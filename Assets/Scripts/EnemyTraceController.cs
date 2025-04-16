@@ -12,7 +12,7 @@ public class EnemyTraceController : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
