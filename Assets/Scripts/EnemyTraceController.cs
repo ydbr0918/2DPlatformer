@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyTraceController : MonoBehaviour
 {
-    public float movespeed = .5f;
+    public float movespeed = .8f;
     public float raycastDistance = .2f;
     public float traceDistance = 2f;
 
@@ -36,34 +37,55 @@ public class EnemyTraceController : MonoBehaviour
             }
             else
             {
-                transform.Translate (direction*movespeed * Time.deltaTime);
+                transform.Translate(direction * movespeed * Time.deltaTime);
             }
 
         }
+
+
+        {
+
+
+
+
+            // 좌우 방향에 따라 몬스터 스프라이트 반전
+            if (direction.x != 0)
+            {
+                Vector3 scale = transform.localScale;
+
+                // 오른쪽을 보면 localScale.x를 양수, 왼쪽을 보면 음수
+                scale.x = direction.x < 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+
+                // 반전된 크기를 적용
+                transform.localScale = scale;
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
