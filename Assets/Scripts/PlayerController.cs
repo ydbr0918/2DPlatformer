@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject bulletPrefab;
+    public Transform firepoint;
     // 🔹 이동 및 점프 관련 변수
     public float moveSpeed = 5f;          // 플레이어 이동 속도
     public float jumpForce = 1f;          // 점프 힘
@@ -45,6 +47,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Shoot();
+        }
         // 🔹 이동 처리
         float moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
@@ -65,7 +71,10 @@ public class PlayerController : MonoBehaviour
             pAni.SetTrigger("jumpAction");
         }
     }
-
+    void Shoot()
+    {
+        Instantiate(bulletPrefab,firepoint.position,firepoint.rotation);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 🔹 적과 충돌
