@@ -2478,6 +2478,8 @@ MonoBehaviour:
     m_Bits: 8
   speedBoostAmount: 3
   speedBoostDuration: 3
+  jumpBoostAmount: 5
+  jumpBoostDuration: 3
 --- !u!212 &835991140
 SpriteRenderer:
   m_ObjectHideFlags: 0
