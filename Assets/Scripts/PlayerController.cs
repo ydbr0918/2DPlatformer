@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private float invincibleDuration = 5f;
     private SpriteRenderer spriteRenderer;
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,7 +75,13 @@ public class PlayerController : MonoBehaviour
     }
     void Shoot()
     {
-        Instantiate(bulletPrefab,firepoint.position,firepoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, Quaternion.identity);
+
+        // 방향 설정 (플레이어가 바라보는 방향)
+        float direction = transform.localScale.x > 0 ? 1f : -1f;
+        Vector3 scale = bullet.transform.localScale;
+        scale.x = direction * Mathf.Abs(scale.x);
+        bullet.transform.localScale = scale;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -172,5 +180,9 @@ public class PlayerController : MonoBehaviour
         isJumpBoosted = false;
 
         Debug.Log("점프력 증가 종료");
+    }
+    public bool IsInvincible()
+    {
+        return isInvincible;
     }
 }

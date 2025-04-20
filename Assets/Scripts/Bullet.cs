@@ -2,32 +2,31 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float maxDistance = 10f;
+    public float speed = 10f;
+    public float lifeTime = 2f;
     public int damage = 1;
 
-    private Vector3 startPosition;
+    private float dirX;
 
     private void Start()
     {
-        startPosition = transform.position;
+        Destroy(gameObject, lifeTime);
+        dirX = transform.localScale.x > 0 ? 1f : -1f;
     }
 
     private void Update()
     {
-        if (Vector3.Distance(startPosition, transform.position) > maxDistance)
-        {
-            Destroy(gameObject);
-        }
+        transform.Translate(Vector2.right * dirX * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
-            if (enemy != null)
+            EnemyBoss boss = collision.GetComponent<EnemyBoss>();
+            if (boss != null)
             {
-                enemy.TakeDamage(damage);
+                boss.TakeDamage(damage);
             }
 
             Destroy(gameObject);
