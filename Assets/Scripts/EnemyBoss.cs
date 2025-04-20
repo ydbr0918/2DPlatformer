@@ -95,7 +95,7 @@ public class EnemyBoss : MonoBehaviour
         switch (pastAction)
         {
             case 0: // Jump
-                if (!hasJumped) // isGrounded와 hasJumped가 true일 때 점프 실행
+                if (!hasJumped) //hasJumped가 true일 때 점프 실행
                 {
                     animator.SetTrigger("JumpTrigger");
                     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // 점프 힘 추가
