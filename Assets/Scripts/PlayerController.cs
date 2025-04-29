@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private float invincibleDuration = 5f;
     private SpriteRenderer spriteRenderer;
 
+    float score;
+
 
 
     private void Awake()
@@ -45,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
         originalSpeed = moveSpeed;
         originalJumpForce = jumpForce; // ← 원래 점프 힘도 저장
+
+        score = 1000f;
     }
 
     private void Update()
@@ -72,6 +76,8 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             pAni.SetTrigger("jumpAction");
         }
+
+        score -=Time.deltaTime;
     }
     void Shoot()
     {
@@ -107,6 +113,7 @@ public class PlayerController : MonoBehaviour
         // 🔹 레벨 완료
         if (collision.CompareTag("Finish"))
         {
+            HighScore.TrySet(SceneManager.GetActiveScene().buildIndex,(int)score);
             collision.GetComponent<LevelObject>().MoveToNextLevel();
         }
 
