@@ -113,7 +113,9 @@ public class PlayerController : MonoBehaviour
         // 🔹 레벨 완료
         if (collision.CompareTag("Finish"))
         {
-            HighScore.TrySet(SceneManager.GetActiveScene().buildIndex,(int)score);
+            //HighScore.TrySet(SceneManager.GetActiveScene().buildIndex,(int)score);
+            StageResultSaver.SaveStage(SceneManager.GetActiveScene().buildIndex,(int)score);
+
             collision.GetComponent<LevelObject>().MoveToNextLevel();
         }
 
