@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScoreOpen : MonoBehaviour
+public class RankOpen : MonoBehaviour
 {
 
-    public GameObject scoreUI;
+    public GameObject rankUI;
     public void GameStart()
     {
         SceneManager.LoadScene("Level_1");
@@ -15,13 +15,13 @@ public class ScoreOpen : MonoBehaviour
         Application.Quit();
     }
 
-    public void RankPanelOpen()
+    public void Panel2Open()
     {
-        scoreUI.SetActive(true);
+        rankUI.SetActive(true);
 
     }
-    public void RankPanelDown()
+    public void Panel2Down()
     {
-        scoreUI.SetActive(false);
+        rankUI.SetActive(false);
     }
 }
