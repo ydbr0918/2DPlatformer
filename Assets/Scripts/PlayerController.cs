@@ -104,6 +104,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (collision.CompareTag("Item"))
+        {
+            isInvincible= true;
+            score += collision.GetComponent<ItemObject>().GetPoint();
+            Destroy(collision.gameObject);
+        }
+
         // 🔹 낙사 등
         if (collision.CompareTag("Respawn"))
         {
